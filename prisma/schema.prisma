@@ -11,18 +11,20 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String   @unique
-  phone     String   @unique
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  name      String     @unique
+  phone     String     @unique
   pwd       String
   addr      String
   d_addr    String?
   avatar    String?
-  photos    Photo[]
   likes     Like[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  likesCss  LikeCss[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  photos    Photo[]
+  photosCss PhotoCss[]
 }
 
 model Photo {
@@ -37,15 +39,16 @@ model Photo {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   likes     Like[]
-
 }
 
 model Hashtag {
-  id        Int      @id @default(autoincrement())
-  hashtag   String   @unique
-  photos    Photo[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  hashtag    String   @unique
+  photos     Photo[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  photoCss   PhotoCss @relation(fields: [photoCssId], references: [id])
+  photoCssId Int
 }
 
 model Like {
@@ -57,5 +60,36 @@ model Like {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+
   @@unique([photoId, userId])
+  PhotoCss   PhotoCss? @relation(fields: [photoCssId], references: [id])
+  photoCssId Int?
+}
+
+model LikeCss {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  photoCss   PhotoCss @relation(fields: [photoCssId], references: [id])
+  photoCssId Int
+
+
+  @@unique([userId, photoCssId])
+}
+
+model PhotoCss {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  file      String
+  caption   String?
+  skils     String?
+  subject   String?
+  hashtags  Hashtag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  likes     Like[]
+  LikeCss   LikeCss[]
 }

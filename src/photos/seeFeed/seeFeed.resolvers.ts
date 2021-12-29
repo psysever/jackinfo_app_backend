@@ -20,7 +20,34 @@ export default {
             createdAt: 'desc',
           },
         })
+        const fPhotoCss = await client.photoCss.findMany({
+          where: {
+            OR: [
+              {
+                id,
+              },
+              {
+                userId: loggedInUser.id,
+              },
+            ],
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+        })
         const totalCount = await client.photo.count({
+          where: {
+            OR: [
+              {
+                id,
+              },
+              {
+                userId: loggedInUser.id,
+              },
+            ],
+          },
+        })
+        const totalCountCss = await client.photoCss.count({
           where: {
             OR: [
               {
@@ -34,7 +61,9 @@ export default {
         })
         return {
           Photo: fPhoto,
+          PhotoCss: fPhotoCss,
           totalCount,
+          totalCountCss,
         }
       },
     ),

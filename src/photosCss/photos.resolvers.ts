@@ -23,7 +23,7 @@ const resolvers: Resolvers = {
         },
       }),
   },
-  Photo: {
+  PhotoCss: {
     user: ({ userId }) => client.user.findUnique({ where: { id: userId } }),
     hashtags: ({ id }) =>
       client.hashtag.findMany({
@@ -52,11 +52,11 @@ const resolvers: Resolvers = {
       if (!loggedInUser) {
         return false
       }
-      const ok = await client.like.findUnique({
+      const ok = await client.likeCss.findUnique({
         where: {
-          photoId_userId: {
-            photoId: id,
+         userId_photoCssId: {
             userId: loggedInUser.id,
+            photoCssId: id,
           },
         },
         select: {

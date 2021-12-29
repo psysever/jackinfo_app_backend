@@ -1,18 +1,18 @@
-import { protectResolver } from './../../users/users.utils';
-import { uploadToS3 } from './../../shared/shared.utils'
-import { processHashtags } from './../photos.uils'
+import { protectResolver } from '../../users/users.utils';
+import { uploadToS3 } from '../../shared/shared.utils'
+import { processHashtags } from '../photos.uils'
 
 import client from '../../client'
 export default {
   Mutation: {
-    uploadPhotoNode: protectResolver(
+    uploadPhotoCss: protectResolver(
       async (_:any, { file, caption, skils, subject, }:any, { loggedInUser }:any) => {
         let hashtagObj = [];
         if (caption) {
           hashtagObj = processHashtags(caption);
         }
-        const fileUrl = await uploadToS3(file, loggedInUser.id, "uploadPhotoNode");
-        return client.photo.create({
+        const fileUrl = await uploadToS3(file, loggedInUser.id, "uploadPhotoCss");
+        return client.photoCss.create({
           data: {
             file: fileUrl,
             caption,

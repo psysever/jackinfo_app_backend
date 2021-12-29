@@ -4,9 +4,9 @@ import client from '../../client'
 
 export default {
   Mutation: {
-    toggleLike: protectResolver(
+    toggleLikeCss: protectResolver(
       async (_: any, { id }: any, { loggedInUser }: any) => {
-        const photo = await client.photo.findUnique({
+        const photo = await client.photoCss.findUnique({
           where: {
             id,
           },
@@ -18,27 +18,27 @@ export default {
           }
         }
         const likeWhere = {
-          photoId_userId: {
-            photoId: id,
+          userId_photoCssId: {
+            photoCssId: id,
             userId: loggedInUser.id,
           },
         }
-        const like = await client.like.findUnique({
+        const like = await client.likeCss.findUnique({
           where: likeWhere,
         })
         if (like) {
-          await client.like.delete({
+          await client.likeCss.delete({
             where: likeWhere,
           })
         } else {
-          await client.like.create({
+          await client.likeCss.create({
             data: {
               user: {
                 connect: {
                   id: loggedInUser.id,
                 },
               },
-              photo: {
+              photoCss: {
                 connect: {
                   id: photo.id,
                 },
