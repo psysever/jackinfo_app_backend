@@ -20,21 +20,39 @@ model User {
   d_addr    String?
   avatar    String?
   likes     Like[]
-  likesCss  LikeCss[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
+  likesCss  LikeCss[]
   photos    Photo[]
   photosCss PhotoCss[]
+  photosRJ  PhotoRJ[]
+  photosRN  PhotoRN[]
+  LikeRJ    LikeRJ[]
+  LikeRN    LikeRN[]
 }
 
 model Photo {
   id        Int       @id @default(autoincrement())
-  user      User      @relation(fields: [userId], references: [id])
-  userId    Int
+  user      User?      @relation(fields: [userId], references: [id])
+  userId    Int?
   file      String
+  file2     String?
+  file3     String?
+  file4     String?
+  file5     String?
+  file6     String?
+  file7     String?
+  file8     String?
   caption   String?
   skils     String?
   subject   String?
+  subject2   String?
+  subject3   String?
+  subject4  String?
+  subject5   String?
+  subject6   String?
+  subject7   String?
+  subject8   String?
   hashtags  Hashtag[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -44,11 +62,16 @@ model Photo {
 model Hashtag {
   id         Int      @id @default(autoincrement())
   hashtag    String   @unique
-  photos     Photo[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   photoCss   PhotoCss @relation(fields: [photoCssId], references: [id])
   photoCssId Int
+  photoRJ    PhotoRJ? @relation(fields: [photoRJId], references: [id])
+  photoRJId  Int?
+  photoRN    PhotoRN? @relation(fields: [photoRNId], references: [id])
+  photoRNId  Int?
+  photos     Photo    @relation(fields: [photoId], references: [id])
+  photoId    Int
 }
 
 model Like {
@@ -60,23 +83,43 @@ model Like {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-
   @@unique([photoId, userId])
-  PhotoCss   PhotoCss? @relation(fields: [photoCssId], references: [id])
-  photoCssId Int?
 }
 
 model LikeCss {
   id         Int      @id @default(autoincrement())
   user       User     @relation(fields: [userId], references: [id])
+  photoCss   PhotoCss @relation(fields: [photoCssId], references: [id])
+  photoCssId Int
   userId     Int
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  photoCss   PhotoCss @relation(fields: [photoCssId], references: [id])
-  photoCssId Int
-
 
   @@unique([userId, photoCssId])
+}
+
+model LikeRJ {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  photoRJ   PhotoRJ  @relation(fields: [photoRJId], references: [id])
+  photoRJId Int
+
+  @@unique([userId, photoRJId])
+}
+
+model LikeRN {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  photoRN   PhotoRN  @relation(fields: [photoRNId], references: [id])
+  photoRNId Int
+
+  @@unique([userId, photoRNId])
 }
 
 model PhotoCss {
@@ -84,12 +127,82 @@ model PhotoCss {
   user      User      @relation(fields: [userId], references: [id])
   userId    Int
   file      String
+  file2     String?
+  file3     String?
+  file4     String?
+  file5     String?
+  file6     String?
+  file7     String?
+  file8     String?
   caption   String?
   skils     String?
   subject   String?
+   subject2   String?
+  subject3   String?
+  subject4  String?
+  subject5   String?
+  subject6   String?
+  subject7   String?
+  subject8   String?
   hashtags  Hashtag[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  likes     Like[]
-  LikeCss   LikeCss[]
+  likeCss   LikeCss[]
+
+}
+
+model PhotoRJ {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  file      String
+  file2     String?
+  file3     String?
+  file4     String?
+  file5     String?
+  file6     String?
+  file7     String?
+  file8     String?
+  caption   String?
+  skils     String?
+  subject   String?
+  subject2   String?
+  subject3   String?
+  subject4  String?
+  subject5   String?
+  subject6   String?
+  subject7   String?
+  subject8   String?
+  hashtags  Hashtag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  likeRJ    LikeRJ[]
+}
+
+model PhotoRN {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  file      String
+   file2     String?
+  file3     String?
+  file4     String?
+  file5     String?
+  file6     String?
+  file7     String?
+  file8     String?
+  caption   String?
+  skils     String?
+  subject   String?
+   subject2   String?
+  subject3   String?
+  subject4  String?
+  subject5   String?
+  subject6   String?
+  subject7   String?
+  subject8   String?
+  hashtags  Hashtag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  likeRN    LikeRN[]
 }

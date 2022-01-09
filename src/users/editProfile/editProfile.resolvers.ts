@@ -36,9 +36,6 @@ export default {
           },
         })
 
-        console.log(updatedUser)
-        console.log('avatar')
-        console.log(avatar)
         if (updatedUser) {
           return {
             ok: true,

@@ -13,7 +13,7 @@ const resolvers: Resolvers = {
         .photos()
     },
     totalPhotos: ({ id }) =>
-      client.photo.count({
+      client.photoCss.count({
         where: {
           hashtags: {
             some: {
@@ -25,20 +25,10 @@ const resolvers: Resolvers = {
   },
   PhotoCss: {
     user: ({ userId }) => client.user.findUnique({ where: { id: userId } }),
-    hashtags: ({ id }) =>
-      client.hashtag.findMany({
-        where: {
-          photos: {
-            some: {
-              id,
-            },
-          },
-        },
-      }),
     likes: ({ id }) =>
-      client.like.count({
+      client.likeCss.count({
         where: {
-          photoId: id,
+          photoCssId: id,
         },
       }),
 
@@ -54,7 +44,7 @@ const resolvers: Resolvers = {
       }
       const ok = await client.likeCss.findUnique({
         where: {
-         userId_photoCssId: {
+          userId_photoCssId: {
             userId: loggedInUser.id,
             photoCssId: id,
           },

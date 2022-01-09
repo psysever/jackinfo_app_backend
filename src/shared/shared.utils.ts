@@ -31,11 +31,33 @@ const Bucket = 'showjack-uploads'
 const bucketInstance = new AWS.S3()
 
 export const delPhotoS3 = async (fileUrl: any, folderName: any) => {
-  const filePath = fileUrl.split(`/${folderName}/`)[1] // 파일명만 split 후 선택
+  const decodedUrl = decodeURI(fileUrl)
+  const filePath = decodedUrl.split(`/${folderName}/`)[1] // 파일명만 split 후 선택
+
+  const fileName = `${folderName}/${filePath}`
   const params = {
-    Bucket: `${Bucket}/${folderName}`, // Bucket에 폴더 명 uploads 추가
-    Key: filePath,
+    Bucket: `${Bucket}`, // Bucket에 폴더 명 uploads 추가
+    Key: fileName,
   }
+  await bucketInstance
+    .deleteObject(params, (error: any, data: any) => {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log(data)
+      }
+    })
+    .promise()
+}
+export const delVideoS3 = async (fileUrl: any, folderName: any) => {
+  const decodedUrl = decodeURI(fileUrl)
+  const filePath = decodedUrl.split('/')[4] // 파일명만 split 후 선택
+  const fileName = `${folderName}/${filePath}`
+  const params = {
+    Bucket: `${Bucket}`, // Bucket에 폴더 명 uploads 추가
+    Key: fileName,
+  }
+
   await bucketInstance
     .deleteObject(params, (error: any, data: any) => {
       if (error) {

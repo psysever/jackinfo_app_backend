@@ -1,10 +1,11 @@
+import { delVideoS3 } from './../../shared/shared.utils'
 import client from '../../client'
 import { delPhotoS3 } from '../../shared/shared.utils'
 import { protectResolver } from '../../users/users.utils'
 
 export default {
   Mutation: {
-    cssDeletePhoto: protectResolver(
+    deletePhotoCss: protectResolver(
       async (_: any, { id }: any, { loggedInUser }: any) => {
         const photo = await client.photoCss.findUnique({
           where: {
@@ -12,7 +13,14 @@ export default {
           },
           select: {
             userId: true,
-            // file: true,
+            file: true,
+            file2: true,
+            file3: true,
+            file4: true,
+            file5: true,
+            file6: true,
+            file7: true,
+            file8: true,
           },
         })
         if (!photo) {
@@ -26,12 +34,19 @@ export default {
             error: 'Not authorized.',
           }
         } else {
-          // await delPhotoS3(photo.file, 'uploads')
           await client.photoCss.delete({
             where: {
               id,
             },
           })
+          await delPhotoS3(photo.file, 'uploadPhotoCss')
+          await delVideoS3(photo.file2, 'uploadPhotoCss')
+          await delVideoS3(photo.file3, 'uploadPhotoCss')
+          await delVideoS3(photo.file4, 'uploadPhotoCss')
+          await delVideoS3(photo.file5, 'uploadPhotoCss')
+          await delVideoS3(photo.file6, 'uploadPhotoCss')
+          await delVideoS3(photo.file7, 'uploadPhotoCss')
+          await delVideoS3(photo.file8, 'uploadPhotoCss')
           return {
             ok: true,
           }

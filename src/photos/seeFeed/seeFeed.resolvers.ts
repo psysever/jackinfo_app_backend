@@ -3,69 +3,69 @@ import client from './../../client'
 
 export default {
   Query: {
-    seeFeed: protectResolver(
-      async (_: any, { id, page }: any, { loggedInUser }: any) => {
-        const fPhoto = await client.photo.findMany({
-          where: {
-            OR: [
-              {
-                id,
-              },
-              {
-                userId: loggedInUser.id,
-              },
-            ],
-          },
-          orderBy: {
-            createdAt: 'desc',
-          },
-        })
-        const fPhotoCss = await client.photoCss.findMany({
-          where: {
-            OR: [
-              {
-                id,
-              },
-              {
-                userId: loggedInUser.id,
-              },
-            ],
-          },
-          orderBy: {
-            createdAt: 'desc',
-          },
-        })
-        const totalCount = await client.photo.count({
-          where: {
-            OR: [
-              {
-                id,
-              },
-              {
-                userId: loggedInUser.id,
-              },
-            ],
-          },
-        })
-        const totalCountCss = await client.photoCss.count({
-          where: {
-            OR: [
-              {
-                id,
-              },
-              {
-                userId: loggedInUser.id,
-              },
-            ],
-          },
-        })
-        return {
-          Photo: fPhoto,
-          PhotoCss: fPhotoCss,
-          totalCount,
-          totalCountCss,
-        }
-      },
-    ),
+    seeFeed: async (_: any, { id, page }: any, { loggedInUser }: any) => {
+      const fPhoto = await client.photo.findMany({
+        where: {
+          id,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+      const fPhotoCss = await client.photoCss.findMany({
+        where: {
+          id,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+      const fPhotoRJ = await client.photoRJ.findMany({
+        where: {
+          id,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+      const fPhotoRN = await client.photoRN.findMany({
+        where: {
+          id,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      })
+      const totalCount = await client.photo.count({
+        where: {
+          id,
+        },
+      })
+      const totalCountCss = await client.photoCss.count({
+        where: {
+          id,
+        },
+      })
+      const totalCountRJ = await client.photoRJ.count({
+        where: {
+          id,
+        },
+      })
+      const totalCountRN = await client.photoRN.count({
+        where: {
+          id,
+        },
+      })
+      return {
+        Photo: fPhoto,
+        PhotoCss: fPhotoCss,
+        PhotoRJ: fPhotoRJ,
+        PhotoRN: fPhotoRN,
+        totalCount,
+        totalCountCss,
+        totalCountRJ,
+        totalCountRN,
+      }
+    },
   },
 }

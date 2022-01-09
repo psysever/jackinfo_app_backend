@@ -6,6 +6,6 @@ export default gql`
     error: String
   }
   type Mutation {
-    cssDeletePhoto(id: Int!): DeletePhotoResult!
+    deletePhotoCss(id: Int!): DeletePhotoResult!
   }
 `
