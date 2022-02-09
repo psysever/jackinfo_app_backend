@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec ts-node src/server --ext ts,js --delay 2s ",
+    "dev": "nodemon --exec ts-node src/server --ext ts,js --delay 2s ",
+    "start": "node build/server ",
     "migrate": "npx prisma migrate dev --preview-feature",
     "studio": "npx prisma studio"
   },
@@ -19,8 +20,11 @@
   },
   "homepage": "https://github.com/psysever/back#readme",
   "dependencies": {
+    "@aws-sdk/types": "^3.50.0",
+    "@babel/cli": "^7.17.0",
     "@graphql-tools/load-files": "^6.5.2",
-    "@prisma/client": "^3.7.0",
+    "@prisma/client": "^3.9.1",
+    "@types/aws-sdk": "^2.7.0",
     "@types/bcrypt": "^5.0.0",
     "@types/graphql-upload": "^8.0.7",
     "apollo-server": "^3.5.0",

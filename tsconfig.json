@@ -1,12 +1,23 @@
+// {
+//   "compilerOptions": {
+//     "outDir": "./built",
+//     "allowJs": true,
+//     "target": "ES5",
+//     "esModuleInterop": true,
+//     "strict": true,
+//     "lib": ["esnext"],
+//     "sourceMap": true
+//   },
+//   "include": ["./src/**/*", "src/photos/seeHashtag", "src/photos/likePhoto", "comments/seePhotoComments", "comments/uploadPhotosCss"]
+// }
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "outDir": "./build",
     "allowJs": true,
-    "target": "ES5",
-    "esModuleInterop": true,
-    "strict": true,
-    "lib": ["esnext"],
-    "sourceMap": true
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
-  "include": ["./src/**/*", "src/photos/seeHashtag", "src/photos/likePhoto", "comments/seePhotoComments", "comments/uploadPhotosCss"]
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
 }

@@ -33,7 +33,6 @@ export default {
         }: any,
         { loggedInUser }: any,
       ) => {
-        console.log(id)
         const oldPhoto = await client.photoCss.findFirst({
           where: {
             id,
@@ -47,6 +46,7 @@ export default {
           //   },
           // },
         })
+        console.log(oldPhoto)
         if (!oldPhoto) {
           return {
             ok: false,
@@ -66,7 +66,12 @@ export default {
         let fileUrl6 = null
         let fileUrl7 = null
         let fileUrl8 = null
-
+        console.log('file')
+        console.log(file)
+        console.log('file2')
+        console.log(file2)
+        console.log('file3')
+        console.log(file3)
         if (file) {
           fileUrl = await uploadToS3(file, loggedInUser.id, 'uploadPhotoCss')
         }
@@ -97,13 +102,13 @@ export default {
           },
           data: {
             ...(file && { file: fileUrl }),
-            file2: fileUrl2,
-            file3: fileUrl3,
-            file4: fileUrl4,
-            file5: fileUrl5,
-            file6: fileUrl6,
-            file7: fileUrl7,
-            file8: fileUrl8,
+            ...(file2 && { file2: fileUrl2 }),
+            ...(file3 && { file3: fileUrl3 }),
+            ...(file4 && { file4: fileUrl4 }),
+            ...(file5 && { file5: fileUrl5 }),
+            ...(file6 && { file6: fileUrl6 }),
+            ...(file7 && { file7: fileUrl7 }),
+            ...(file8 && { file8: fileUrl8 }),
             caption,
             skils,
             subject,
