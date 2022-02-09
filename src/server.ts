@@ -14,7 +14,6 @@ const startServer = async () => {
     resolvers,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     introspection: true,
-
     context: async ({ req }) => {
       return {
         loggedInUser: await getUser(req.headers.authorization),
