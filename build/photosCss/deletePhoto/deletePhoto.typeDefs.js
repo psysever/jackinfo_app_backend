@@ -7,3 +7,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var apollo_server_1 = require("apollo-server");
 exports.default = (0, apollo_server_1.gql)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  type DeletePhotoResult {\n    ok: Boolean!\n    error: String\n  }\n  type Mutation {\n    deletePhotoCss(id: Int!): DeletePhotoResult!\n  }\n"], ["\n  type DeletePhotoResult {\n    ok: Boolean!\n    error: String\n  }\n  type Mutation {\n    deletePhotoCss(id: Int!): DeletePhotoResult!\n  }\n"])));
 var templateObject_1;
+//# sourceMappingURL=deletePhoto.typeDefs.js.map

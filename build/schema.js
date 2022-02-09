@@ -7,3 +7,4 @@ var loadedTypes = (0, load_files_1.loadFilesSync)("".concat(__dirname, "/**/*.ty
 var loadedResolvers = (0, load_files_1.loadFilesSync)("".concat(__dirname, "/**/*.resolvers.*"));
 exports.typeDefs = (0, merge_1.mergeTypeDefs)(loadedTypes);
 exports.resolvers = (0, merge_1.mergeResolvers)(loadedResolvers);
+//# sourceMappingURL=schema.js.map

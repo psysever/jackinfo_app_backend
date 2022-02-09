@@ -16,3 +16,4 @@ var resolvers = {
     },
 };
 exports.default = resolvers;
+//# sourceMappingURL=searchPhotos.resolvers.js.map

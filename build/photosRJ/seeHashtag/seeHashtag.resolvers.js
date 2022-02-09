@@ -1,29 +1,29 @@
-'use strict'
-var __assign =
-  (this && this.__assign) ||
-  function () {
-    __assign =
-      Object.assign ||
-      function (t) {
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i]
-          for (var p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p]
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
         }
-        return t
-      }
-    return __assign.apply(this, arguments)
-  }
-Object.defineProperty(exports, '__esModule', { value: true })
-var client_1 = require('./../../client')
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var client_1 = __importDefault(require("./../../client"));
 var resolvers = {
-  Query: {
-    SeeHashtagRJ: function (_, _a) {
-      var hashtag = _a.hashtag
-      return client_1.hashtag.findUnique({
-        where: __assign({}, hashtag && { hashtag: hashtag }),
-      })
+    Query: {
+        SeeHashtagRJ: function (_, _a) {
+            var hashtag = _a.hashtag;
+            return client_1.default.hashtag.findUnique({
+                where: __assign({}, (hashtag && { hashtag: hashtag })),
+            });
+        },
     },
-  },
-}
-exports.default = resolvers
+};
+exports.default = resolvers;
+//# sourceMappingURL=seeHashtag.resolvers.js.map

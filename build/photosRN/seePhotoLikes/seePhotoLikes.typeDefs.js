@@ -7,3 +7,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var apollo_server_express_1 = require("apollo-server-express");
 exports.default = (0, apollo_server_express_1.gql)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  type Query {\n    seePhotoLikesRN(id: Int!): [User]\n  }\n"], ["\n  type Query {\n    seePhotoLikesRN(id: Int!): [User]\n  }\n"])));
 var templateObject_1;
+//# sourceMappingURL=seePhotoLikes.typeDefs.js.map
