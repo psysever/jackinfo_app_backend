@@ -23,7 +23,6 @@ const startServer = async () => {
 
   await server.start()
   const app = express()
-  app.use('/graphql', graphqlUploadExpress({ maxFileSize: 1 * 100000 * 10000 }))
 
   server.applyMiddleware({ app })
   await new Promise((func: any) => app.listen({ port: PORT }, func))
